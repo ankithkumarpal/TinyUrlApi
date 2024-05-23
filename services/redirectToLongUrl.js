@@ -6,7 +6,11 @@ const redirectToLongUrl = async (req , res) => {
     try {
         const mapping = await MappingSchema.findOne({ TinyUrl: tinyUrl });
         if (mapping) {
-            res.redirect(mapping.LongUrl);
+            let longUrl = mapping.LongUrl;
+            if (!longUrl.startsWith("https://")) {
+                longUrl = "https://" + longUrl;
+            }
+            res.redirect(longUrl);
         } else {
             res.status(404).send('Address Not found');
         }
