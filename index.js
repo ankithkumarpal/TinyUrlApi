@@ -23,7 +23,7 @@ mongoose.connect(process.env.MONGODB_URI, {
 
 // middlewares
 app.use('/generate' ,IdGeneratorController);
-app.use('/',redirectionController);
+app.use('/rd',redirectionController);
 
 const port = process.env.PORT || 5000;
 app.listen(port, () => {
